@@ -1,0 +1,43 @@
+
+/**
+ * Module dependencies.
+ */
+var express = require('express');
+var routes = require('./routes');
+var project = require('./routes/project');
+var http = require('http');
+var path = require('path');
+
+var app = express();
+
+// all environments
+app.set('port', process.env.PORT || 3000);
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'mustache');
+app.set('layout', 'layout');
+//app.set('partials', {footer: "footer",header: "header"});
+if('production' == app.get('env')){
+  app.enable('view cache');
+}
+app.engine('mustache', require('hogan-express'));
+
+app.use(express.favicon());
+app.use(express.logger('dev'));
+app.use(express.json());
+app.use(express.urlencoded());
+app.use(express.methodOverride());
+app.use(app.router);
+app.use(express.static(path.join(__dirname, 'public')));
+
+// development only
+if ('development' == app.get('env')) {
+  app.use(express.errorHandler());
+}
+
+app.get('/', routes.index);
+app.get('/tag/:tag', routes.index);
+app.get('/p/:pname', project.index);
+
+http.createServer(app).listen(app.get('port'), function(){
+  console.log('Express server listening on port ' + app.get('port'));
+});
