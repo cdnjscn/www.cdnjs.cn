@@ -5,6 +5,7 @@
 var express = require('express');
 var routes = require('./routes');
 var project = require('./routes/project');
+var search = require('./routes/search');
 var http = require('http');
 var path = require('path');
 
@@ -35,6 +36,7 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.index);
+app.get('/search', search.index);
 app.get('/tag/:tag', routes.index);
 app.get('/p/:pname', project.index);
 

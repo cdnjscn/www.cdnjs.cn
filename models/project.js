@@ -2,7 +2,8 @@
 var mongoose = require('mongoose');
 var Schema = require('mongoose').Schema;
 
-var project = new Schema({
+ 
+	var project = new Schema({
     "name": String,
     "filename": String,
     "version": String,
@@ -14,6 +15,7 @@ var project = new Schema({
     "licenses": [{"type":String,"url":String}],
     "repositories": {"type": String,"url": String},
     "assets": [{"version": String,"files": [String]}]
-});
+	});
 
-module.exports = mongoose.model('cdnjs', project);
+	module.exports = mongoose.model('cdnjs', project);
+
