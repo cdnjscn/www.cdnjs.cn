@@ -1,13 +1,13 @@
-var mongoose = require('mongoose');
-//require('../models/project');
-var Project = require('../models/project');
+var mongoose = require('mongoose'),
+Project = require('../models/project'),
+mongoConf = require('../mongo.json');
 
 exports.index = function(req, res) {
-    mongoose.connect('mongodb://localhost/test2',function(err){
+    mongoose.connect('mongodb://' + mongoConf.ip + ':' + mongoConf.port + '/cdnjs',function(err){
 	  if (err) return;
 	  Project.find({name: new RegExp(req.query.q,'i')},function(err,data){
 		  mongoose.disconnect();
-		  res.render('search',{title:'list',list:data});
+		  res.render('search',{title:'搜索',list:data});
 	  });
     });
 };

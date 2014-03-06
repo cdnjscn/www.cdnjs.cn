@@ -1,6 +1,7 @@
 var mongoose = require('mongoose'),
 Project = require('../models/project'),
-_ = require('underscore');
+_ = require('underscore'),
+mongoConf = require('../mongo.json');
 
 exports.index = function(req, res){
 	var tags = {
@@ -11,7 +12,7 @@ exports.index = function(req, res){
 	},
 	tag = req.params.tag || 'pop';
 	
-	mongoose.connect('mongodb://localhost/test2',function(err){
+	mongoose.connect('mongodb://' + mongoConf.ip + ':' + mongoConf.port + '/cdnjs',function(err){
 	  if (err) return;
 	  Project.find({name:{'$in': tags[tag]  }},function(err,data){
 		  mongoose.disconnect();
@@ -24,7 +25,7 @@ exports.index = function(req, res){
 			  v.assets = _.first(v.assets);
 		  });
 		  
-		  res.render('index', { title: 'cdnjs.cn',list: data });
+		  res.render('index', { title: 'cdnjs.cn',list: data,tags: _.keys(tags) });
 	  });
 	});
 	
