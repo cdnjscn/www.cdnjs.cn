@@ -13,6 +13,7 @@ exports.index = function(req, res){
 				  return;
 			  }
 			  data.title = data.name;
+			  console.dir(data);
 			  res.render('project',data);
 		  });
       });	  
