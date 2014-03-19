@@ -41,7 +41,10 @@ exports.index = function(req, res){
 			  return;
 		  }
 		  _.map(data,function(v){
-			  v.assets = _.first(v.assets);
+			  var version = v.version;
+			  v.assets = _.find(v.assets,function(item){
+				  return item.version == version;
+			  });
 		  });
 		  res.render('index', { title: 'cdnjs.cn',list: data, tags:tags});
 	  });
