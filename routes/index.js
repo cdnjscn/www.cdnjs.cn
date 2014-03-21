@@ -1,7 +1,5 @@
-var mongoose = require('mongoose'),
-Project = require('../models/project'),
-_ = require('underscore'),
-mongoConf = require('../mongo.json');
+var Project = require('../models/project'),
+_ = require('underscore');
 
 exports.index = function(req, res){
 	var tags = [
@@ -31,10 +29,7 @@ exports.index = function(req, res){
   		return v.tag == tag;
     }),
 	list = data.list;
-	mongoose.connect('mongodb://' + mongoConf.ip + ':' + mongoConf.port + '/cdnjs',function(err){
-	  if (err) return;
-	  Project.find({name:{'$in': list  }},function(err,data){
-		  mongoose.disconnect();
+	Project.find({name:{'$in': list  }},function(err,data){
 		  if (!data) {
 			  console.log(err);
 			  res.send(500);
@@ -47,9 +42,5 @@ exports.index = function(req, res){
 			  });
 		  });
 		  res.render('index', { title: 'cdnjs.cn',list: data, tags:tags});
-	  });
 	});
-	
-	
-	
 };

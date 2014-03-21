@@ -3,11 +3,16 @@
  * Module dependencies.
  */
 var express = require('express');
+var http = require('http');
+var path = require('path');
+var mongoose = require('mongoose');
+var mongo = require('./mongo.json');
+var uri = 'mongodb://' + mongo.ip + ':' + mongo.port + '/cdnjs';
+global.db = mongoose.createConnection(uri);
 var routes = require('./routes');
 var project = require('./routes/project');
 var search = require('./routes/search');
-var http = require('http');
-var path = require('path');
+
 
 var app = express();
 
