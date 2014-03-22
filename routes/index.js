@@ -16,7 +16,7 @@ exports.index = function(req, res){
 		{
 			tag:'css',
 			text:'样式',
-			list:['twitter-bootstrap','animate.css','1140','authy-forms.css']
+			list:['twitter-bootstrap','animate.css','less.js','authy-forms.css','stylus']
 		},
 		{
 			tag:'lib',
@@ -41,6 +41,6 @@ exports.index = function(req, res){
 				  return item.version == version;
 			  });
 		  });
-		  res.render('index', { title: 'cdnjs.cn',list: data, tags:tags});
+		  res.render('index', { title: 'cdnjs.cn',list: data, tags:tags,libs: list.sort()});
 	});
 };

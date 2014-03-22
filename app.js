@@ -12,6 +12,7 @@ global.db = mongoose.createConnection(uri);
 var routes = require('./routes');
 var project = require('./routes/project');
 var search = require('./routes/search');
+var about = require('./routes/about');
 
 
 var app = express();
@@ -41,6 +42,7 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.index);
+app.get('/about', about.index);
 app.get('/search', search.index);
 app.get('/tag/:tag', routes.index);
 app.get('/p/:pname', project.index);
