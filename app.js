@@ -44,7 +44,12 @@ if ('development' == app.get('env')) {
 app.get('/', routes.index);
 app.get('/about', about.index);
 app.get('/search', search.index);
-app.get('/tag/:tag', routes.index);
+app.get('/category/:tag', routes.index);
+//2014年7月里可以删除此部分
+app.get('/tag/:tag', function(req,res){
+	res.redirect(301, '/category/' + req.params.tag);
+});
+
 app.get('/p/:pname', project.index);
 
 http.createServer(app).listen(app.get('port'), function(){
