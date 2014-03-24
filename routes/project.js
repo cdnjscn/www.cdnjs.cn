@@ -1,4 +1,6 @@
-var Project = require('../models/project');
+var Project = require('../models/project'),
+	reSort = require('../util').reSort,
+	_ = require('underscore');
 
 exports.index = function(req, res){
       
@@ -8,7 +10,11 @@ exports.index = function(req, res){
 				  return;
 			  }
 			  data.title = data.name;
+			  
+			  _.each(data.assets,function(v){
+					reSort(v.files,data);
+			  });
+			  
 			  res.render('project',data);
 		  });
-        
 };

@@ -1,5 +1,6 @@
 var Project = require('../models/project'),
-_ = require('underscore');
+	reSort = require('../util').reSort,
+	_ = require('underscore');
 
 exports.index = function(req, res){
 	var tags = [
@@ -35,12 +36,15 @@ exports.index = function(req, res){
 			  res.send(500);
 			  return;
 		  }
+		  
 		  _.map(data,function(v){
 			  var version = v.version;
 			  v.assets = _.find(v.assets,function(item){
 				  return item.version == version;
 			  });
+			  reSort(v.assets[0].files,v);
 		  });
+		  
 		  res.render('index', { title: 'cdnjs.cn',list: data, tags:tags,libs: list.sort()});
 	});
 };
