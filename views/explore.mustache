@@ -1,0 +1,15 @@
+<ul>
+{{#list}}
+<li>
+	<div><a href="/p/{{name}}">{{name}}</a> fork: {{g_fork}} star: {{g_star}}</div>
+	<p>{{description}}</p>
+	<ul>
+	{{#assets}}
+	{{#files}}
+	<li>//cdnjscn.b0.upaiyun.com/libs/{{name}}/{{version}}/{{.}}</li>
+	{{/files}}
+	{{/assets}}
+	</ul>
+</li>
+{{/list}}
+</ul>

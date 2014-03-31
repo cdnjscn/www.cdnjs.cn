@@ -13,7 +13,7 @@ var routes = require('./routes');
 var project = require('./routes/project');
 var search = require('./routes/search');
 var about = require('./routes/about');
-
+var explore = require('./routes/explore');
 
 var app = express();
 
@@ -43,6 +43,7 @@ if ('development' == app.get('env')) {
 
 app.get('/', routes.index);
 app.get('/about', about.index);
+app.get('/explore', explore.index);
 app.get('/search', search.index);
 app.get('/category/:tag', routes.index);
 //2014年7月里可以删除此部分
