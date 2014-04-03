@@ -6,6 +6,7 @@ var cdnjscn = require('../models/cdnjscn'),
 
 exports.index = function(req, res){
 	var curPage = req.query.page || 1,
+		sortBy = req.query.sort || 'fork',
 		listNum = 10;
 		
 	async.parallel({
@@ -23,9 +24,15 @@ exports.index = function(req, res){
 		list: function(callback){
 			async.waterfall([
 			    function(next){
+					var _sort = {
+						'fork' : {'g_fork':-1},
+						'star' : {'g_star':-1}
+					};
 					cdnjscn.find({},{'_id':0})
 					.skip((curPage - 1) * listNum)
-					.sort({'g_fork':-1}).limit(20).exec(function(err,sortList){
+					.sort( _sort[sortBy] || {'g_fork':-1})
+					.limit(20)
+					.exec(function(err,sortList){
 						var names = [],len = sortList.length;
 						for (var i = 0; i < len; i++) {
 							names.push(sortList[i].name);
@@ -61,8 +68,7 @@ exports.index = function(req, res){
 			]);	
 		}
 	},function(err,results){
-		//console.log(_.keys(results));
-		results.title = '发现优质框架-cdnjs.cn';
+		results.title = '发现 - cdnjs.cn';
 		res.render('explore', results);
 	});
 };

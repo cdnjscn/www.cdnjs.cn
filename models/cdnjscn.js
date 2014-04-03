@@ -5,4 +5,4 @@ var cdnjscn = new Schema({
 	  'g_star': Number,
 	  'g_fork': Number
 });
-module.exports = db.model('cdnjscns', cdnjscn);
+module.exports = db.model('cdnjscn', cdnjscn);
