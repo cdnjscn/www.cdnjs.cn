@@ -13,3 +13,9 @@
 </li>
 {{/list}}
 </ul>
+
+	<a href="/explore?page=1">首页</a>
+	{{#pager.list}}
+		<a href="/explore?page={{.}}">{{.}}</a>
+	{{/pager.list}}
+	<a href="/explore?page={{pager.maxPage}}">末页</a>

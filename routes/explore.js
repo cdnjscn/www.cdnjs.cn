@@ -5,14 +5,27 @@ var cdnjscn = require('../models/cdnjscn'),
 	async = require('async');
 
 exports.index = function(req, res){
+	var curPage = req.query.page || 1,
+		listNum = 10;
+		
 	async.parallel({
 		pager:function(callback){
-			callback(null,{});
+			cdnjscn.count(function(err,num){
+				var pager = {
+					curPage: curPage,
+					total: num
+				};
+				pager.maxPage = Math.ceil(num / listNum);
+				pager.list = _.range(1,pager.maxPage + 1);
+				callback(err,pager);
+			});
 		},
 		list: function(callback){
 			async.waterfall([
 			    function(next){
-					cdnjscn.find({},{'_id':0}).sort({'g_fork':-1}).limit(20).exec(function(err,sortList){
+					cdnjscn.find({},{'_id':0})
+					.skip((curPage - 1) * listNum)
+					.sort({'g_fork':-1}).limit(20).exec(function(err,sortList){
 						var names = [],len = sortList.length;
 						for (var i = 0; i < len; i++) {
 							names.push(sortList[i].name);
@@ -48,6 +61,8 @@ exports.index = function(req, res){
 			]);	
 		}
 	},function(err,results){
-		res.render('explore',{title:'发现-cdnjs.cn',list:results.list});
+		//console.log(_.keys(results));
+		results.title = '发现优质框架-cdnjs.cn';
+		res.render('explore', results);
 	});
 };
