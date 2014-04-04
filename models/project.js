@@ -12,6 +12,6 @@ var project = new Schema({
     "licenses": [{"type":String,"url":String}],
     "repositories": {"type": String,"url": String},
     "assets": [{"version": String,"files": [String]}]
-});
+},{ collection: 'cdnjs' });
 module.exports = db.model('cdnjs', project);
 
