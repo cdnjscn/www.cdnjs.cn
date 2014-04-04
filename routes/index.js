@@ -22,7 +22,7 @@ exports.index = function(req, res){
 		{
 			tag:'lib',
 			text: '框架',
-			list: ['jquery','underscore.js','lodash.js','zepto','yui']
+			list: ['jquery','underscore.js','lodash.js','zepto']
 		}
 	],
 	tag = req.params.tag || 'pop',
@@ -36,15 +36,15 @@ exports.index = function(req, res){
 			  res.send(500);
 			  return;
 		  }
-		  
 		  _.map(data,function(v){
-			  var version = v.version;
+			  var version = v.version,files = v.assets[0].files;
 			  v.assets = _.find(v.assets,function(item){
 				  return item.version == version;
 			  });
-			  reSort(v.assets[0].files,v);
+			  reSort(files,v);
+			  v.hasExt = files.length > 2;
 		  });
 		  
-		  res.render('index', { title: 'cdnjs.cn',list: data, tags:tags,libs: list.sort()});
+		  res.render('index', { title: 'cdnjs.cn',list: data, tags:tags});
 	});
 };

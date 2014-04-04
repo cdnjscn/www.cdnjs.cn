@@ -6,9 +6,12 @@
 {{version}}<br>
 
 {{#assets}}
-<ul>
+<ul class="item">
 {{#files}}
 <li>//cdnjscn.b0.upaiyun.com/libs/{{name}}/{{version}}/{{.}}</li>
 {{/files}}
 </ul>
+{{#hasExt}}
+<a href="#" class="ext">展开</a>
+{{/hasExt}}
 {{/assets}}

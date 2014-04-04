@@ -59,6 +59,7 @@ exports.index = function(req, res){
 			  				  return item.version == version;
 			  			  });
 			  			  reSort(v.assets[0].files,v);
+						  v.hasExt = v.assets[0].files.length > 2;
 			  		  	});
 						// parallel
 						callback(null,list);

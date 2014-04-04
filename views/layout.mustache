@@ -4,8 +4,41 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<title>{{title}}</title>
+		<style>
+		a,a:visited,
+		a:focus,
+		a:active{
+			color:#2b75ee;
+			outline:0;
+			text-decoration:none
+		}
+		a:hover{
+			color:#5e94ff;
+			text-decoration:underline
+		}
+		
+		.main,.footer,.header {
+			width:960px;
+			margin:0 auto;
+		}
+		.item{
+			overflow:hidden;
+			height:38px;
+		}
+		.ext {
+			
+		}
+		
+		ul,li{
+			list-style:none;
+			margin-left:0;
+			padding-left:0;
+		}
+		</style>
 	</head>
 	<body>
+		<div class="header">
+		
 	<h1>cdnjs.cn</h1>
 	<p>
 		<a href="/explore">发现</a>/
@@ -17,15 +50,41 @@
 		<input name="q" value="">
 		<button type="submit">搜索</button>
 	</form>
-
-	</p>
+	</div>
+	
+	<div class="main">
 	{{{yield}}}
-	<div>Copyright &copy; 2014 cdnjs.cn All Rights Reserved 冀ICP备12013675号-2</div>
+	</div>
+	<div class="footer">
+		<div>
+		Copyright &copy; 2014 cdnjs.cn All Rights Reserved 冀ICP备12013675号-2
+		</div>
+		<div>
 	感谢<a href="http://www.upyun.com">
 	<img src='http://cdnjscn.b0.upaiyun.com/plus/cdnjs.cn/imgs/upyun_logo.png'>
-	</a>提供CDN加速服务，
+	</a>
+	提供CDN加速服务，
 	<a href="http://www.ucloud.cn">
 	<img src='http://cdnjscn.b0.upaiyun.com/plus/cdnjs.cn/imgs/ucloud_logo.png'>
 	</a>提供动力支持！
+	</div>
+	</div>
+	
+	<script src="http://cdnjscn.b0.upaiyun.com/libs/jquery/2.1.0/jquery.min.js"></script>
+	<script>
+	$(document).on('click','.ext',function(e){
+		var target = null;
+		e.preventDefault();
+		target = $(e.target);
+	
+		if(target.html() == '展开'){
+			target.html('收起');
+			target.prev().css({'height':'auto'});
+		} else {
+			target.prev().css({'height':'38px'});
+			target.html('展开');
+		}
+	});
+	</script>
 	</body>
 </html>

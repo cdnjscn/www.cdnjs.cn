@@ -7,13 +7,16 @@
 {{#list}}
 <li>
 <a href="/p/{{name}}">{{name}}</a>({{version}})
-<ul>
+<ul class="item">
 {{#assets}}
 {{#files}}
 <li>//cdnjscn.b0.upaiyun.com/libs/{{name}}/{{version}}/{{.}}</li>
 {{/files}}
 {{/assets}}
 </ul>
+{{#hasExt}}
+<a href="#" class="ext">展开</a>
+{{/hasExt}}
 </li>
 {{/list}}
 </ul>

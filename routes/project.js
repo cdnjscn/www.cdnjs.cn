@@ -13,6 +13,7 @@ exports.index = function(req, res){
 			  
 			  _.each(data.assets,function(v){
 					reSort(v.files,data);
+					v.hasExt = v.files.length > 2;
 			  });
 			  
 			  res.render('project',data);
