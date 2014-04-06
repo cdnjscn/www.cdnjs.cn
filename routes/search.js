@@ -6,10 +6,11 @@ exports.index = function(req, res) {
 	  Project.find({name: new RegExp(req.query.q,'i')},function(err,data){
 		  
 		  _.map(data,function(v){
-			  var version = v.version,files = v.assets[0].files;
+			  var version = v.version,files = null;
 			  v.assets = _.find(v.assets,function(item){
 				  return item.version == version;
 			  });
+			  files = v.assets[0].files
 			  reSort(files,v);
 			  v.hasExt = files.length > 2;
 		  });
