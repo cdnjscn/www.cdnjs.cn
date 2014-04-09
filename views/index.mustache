@@ -1,14 +1,47 @@
-<p>
-	cdnjs在国内的镜像站点，每天同步更新，支持https协议，已托管<strong>{{total}}</strong>个开源项目!
-</p>
-<p>
-	说明：点击项目名称可以查看项目的所有版本；<br>
-	在生产项目中建议引用以min.js或min.css结尾的文件，压缩过的文件可以提高页面的载入性能；<br>
-	点击“展开”链接，可以查看最新版本的其它文件；<br>
-</p>
+<style>
+.tips {
+	font-size:14px;
+	margin:18px 0;
+	border:solid 1px #dedede;
+	padding:10px;
+	background-color:#f9f9f9;
+}
+
+.main .nav {
+	font-size:16px;
+	border-bottom:1px solid #eee;
+	margin:10px 0;
+}
+
+.main .nav a,.main .nav a.selected{
+	display:inline-block;
+	padding:0 0 5px;	
+	color:#333;
+}
+.main .nav a:hover {
+	text-decoration: none;	
+}
+.main .nav a.selected {
+	border-bottom:3px solid #d26911;
+	font-weight:bold;
+}
+</style>
+<div class="tips">
+	<p>cdnjs在国内的镜像站点，每天同步更新，支持https协议，已托管<strong>{{total}}</strong>个开源项目!</p>
+	说明:
+	<ul>
+		<li>点击项目名称可以查看项目的所有版本；</li>
+		<li>在生产项目中建议引用以min.js或min.css结尾的文件，压缩过的文件可以提高页面的载入性能；</li>
+		<li>点击“展开”链接，可以查看最新版本的其它文件；</li>
+	</ul>
+</div>
+
+<div class="nav">
 {{#tags}}
-<a href="/category/{{tag}}">{{text}}</a>
+<a href="/category/{{tag}}" {{#selected}}class="selected"{{/selected}}>{{text}}</a>
 {{/tags}}
+</div>
+
 <ul>
 {{#list}}
 <li>

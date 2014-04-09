@@ -37,6 +37,15 @@ exports.index = function(req, res) {
 			});
 		},
 		tags: function(callback) {
+			var tag = req.params.tag || 'pop',
+				len = tags.length,
+				i = 0;
+			for (; i < len; i++) {
+				if(tags[i].tag == tag ){
+					tags[i].selected = true;
+					break;
+				}
+			}
 			callback(null, tags);
 		},
 		list: function(callback) {
