@@ -45,6 +45,14 @@
 			float:left;
 			font-size:30px;
 			font-weight:bold;
+			border-right:solid 1px #333;
+			padding-right:15px;
+		}
+		.header .upyun{
+			float:left;
+			position:relative;
+			top:8px;
+			left:15px;
 		}
 		.header a:hover {
 			text-decoration: none;
@@ -53,7 +61,7 @@
 		.header .search {
 			float:left;
 			position:relative;
-			left:100px;
+			left:30px;
 			top:0;
 		}
 		.header .search button {
@@ -61,8 +69,13 @@
 			width:60px;
 		}
 		.header .search input {
-			width:220px;
+			width:130px;
 			height:30px;
+			-webkit-transition: width .6s;
+			transition: width .6s;
+		}
+		.header .search input:focus {
+			width:220px;
 		}
 		.header .nav {
 			float:right;
@@ -97,16 +110,21 @@
 	</head>
 	<body>
 		<div class="header clearfix">
-	<h1 class="logo"><a href="/">cdnjs.cn</a></h1>
+	<h1 class="logo"><a href="/" title="cdnjs.cn">cdnjs.cn</a></h1>
+	<div class="upyun">
+	<a href="http://www.upyun.com" title="由又拍云提供CDN加速服务">
+		<img src='http://cdnjscn.b0.upaiyun.com/plus/cdnjs.cn/imgs/upyun_logo.png'>
+	</a>	
+	</div>
 	<div class="nav">
-		<a href="/explore">发现</a>/
-		<a href="/about">简介</a>/
-		<a href="/about#howto">如何增加一个库</a>/
+		<a href="/explore">发现</a> |
+		<a href="/about">简介</a> |
+		<a href="/about#howto">如何增加一个库</a> |
 		<a rel="nofollow" href="https://github.com/cdnjscn/www.cdnjs.cn/issues">意见反馈</a>
 	</div>
 	<div class="search">
 	<form action="/search">
-		<input name="q" value="">
+		<input name="q" placeholder="输入项目名称" value="">
 		<button type="submit">搜索</button>
 	</form>
 	</div>
