@@ -84,10 +84,11 @@
 		
 		.item{
 			overflow:hidden;
-			height:38px;
-		}
-		.ext {
-			
+			height:60px;
+			line-height:24px;
+			border:solid 1px #dedede;
+			padding:5px 0;
+			background-color:#f9f9f9;
 		}
 		
 		ul,li{
@@ -99,12 +100,6 @@
 			border-top:solid 1px #dedede;
 			padding:15px 0;
 			margin-top:20px;
-		}
-		.copyright {
-			
-		}
-		.thanks {
-			
 		}
 		</style>
 	</head>
@@ -161,7 +156,7 @@
 			target.html('收起');
 			target.prev().css({'height':'auto'});
 		} else {
-			target.prev().css({'height':'38px'});
+			target.prev().css({'height':'60px'});
 			target.html('展开');
 		}
 	});

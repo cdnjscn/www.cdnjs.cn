@@ -1,8 +1,15 @@
-<a href="/">首页</a>>发现
+<style>
+.list {
+	margin:20px 0;
+}
+</style>
+<a href="/">首页</a> > 发现
 
 <div>
 <a href="/explore?page={{pager.curPage}}&amp;sort=fork">fork</a> | <a href="/explore?page={{pager.curPage}}&amp;sort=star">star</a>
 </div>
+
+<div class="list">
 <ul>
 {{#list}}
 <li>
@@ -21,6 +28,7 @@
 </li>
 {{/list}}
 </ul>
+</div>
 
 	<a href="/explore?page=1">首页</a>
 	{{#pager.list}}

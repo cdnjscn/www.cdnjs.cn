@@ -1,10 +1,16 @@
-<a href="/">首页</a>>{{name}}<br>
+<style>
+.list {
+	margin:20px 0;
+}
+</style>
+<a href="/">首页</a> > {{name}}<br>
 {{name}}<br>
 {{description}}<br>
 <a target="_blank" rel="nofollow" href="{{homepage}}">{{homepage}}</a><br>
 {{filename}}<br>
 最新稳定版：{{version}}<br>
 
+<div class="list">
 {{#assets}}
 <h3>{{version}}</h3>
 <ul class="item">
@@ -16,3 +22,4 @@
 <a href="#" class="ext">展开</a>
 {{/hasExt}}
 {{/assets}}
+</div>
