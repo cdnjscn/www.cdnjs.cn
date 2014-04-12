@@ -38,8 +38,12 @@
 			margin:0 auto;
 		}
 		
+		.header-wrapper {
+			height:60px;
+			border-bottom:solid 1px #dedede;
+		}
 		.header {
-			padding:20px 0;
+			padding:10px 0;
 		}
 		.header .logo {
 			float:left;
@@ -48,10 +52,16 @@
 			border-right:solid 1px #333;
 			padding-right:15px;
 		}
+		.header .logo a{
+			color:#5aaddf;
+		}
+		.header .logo i{
+			color:#656766;
+		}
 		.header .upyun{
 			float:left;
 			position:relative;
-			top:8px;
+			top:6px;
 			left:15px;
 		}
 		.header a:hover {
@@ -69,10 +79,12 @@
 			width:60px;
 		}
 		.header .search input {
-			width:130px;
+			width:150px;
 			height:30px;
 			-webkit-transition: width .6s;
 			transition: width .6s;
+			font-size:12px;
+			padding-left:10px;
 		}
 		.header .search input:focus {
 			width:220px;
@@ -80,6 +92,9 @@
 		.header .nav {
 			float:right;
 			font-size:16px;
+		}
+		.header .nav a{
+			color:#7B838A;
 		}
 		
 		.item{
@@ -96,16 +111,24 @@
 			margin-left:0;
 			padding-left:0;
 		}
-		.footer .wrapper {
+		.footer-wrapper {
 			border-top:solid 1px #dedede;
 			padding:15px 0;
-			margin-top:20px;
+			height:120px;
+			
+		}
+		.thanks {
+			margin-top:10px;
+			vertical-align:bottom;
 		}
 		</style>
 	</head>
 	<body>
+		<div class="header-wrapper">
+			
+		
 		<div class="header clearfix">
-	<h1 class="logo"><a href="/" title="cdnjs.cn">cdnjs.cn</a></h1>
+	<h1 class="logo"><a href="/" title="cdnjs.cn">cdnjs<i>.cn</i></a></h1>
 	<div class="upyun">
 	<a href="http://www.upyun.com" title="由又拍云提供CDN加速服务">
 		<img src='http://cdnjscn.b0.upaiyun.com/plus/cdnjs.cn/imgs/upyun_logo.png'>
@@ -120,28 +143,25 @@
 	<div class="search">
 	<form action="/search">
 		<input name="q" placeholder="输入项目名称" value="">
-		<button type="submit">搜索</button>
 	</form>
+	</div>
 	</div>
 	</div>
 	
 	<div class="main">
 	{{{yield}}}
 	</div>
-	
-	<div class="footer">
-		<div class="wrapper">
-		<div class="copyright">
-		Copyright &copy; 2014 cdnjs.cn All Rights Reserved 冀ICP备12013675号-2
-		</div>
-		<div class="thanks">由<a href="http://www.upyun.com">
-	<img src='http://cdnjscn.b0.upaiyun.com/plus/cdnjs.cn/imgs/upyun_logo.png'>
-	</a>
-	提CDN加速服务；
-	<a href="http://www.ucloud.cn">
-	<img src='http://cdnjscn.b0.upaiyun.com/plus/cdnjs.cn/imgs/ucloud_logo.png'>
-	</a>提供动力支持！
-	</div>
+	<div class="footer-wrapper">
+		<div class="footer">
+			<div class="copyright">
+				Copyright &copy; 2014 cdnjs.cn All Rights Reserved 冀ICP备12013675号-2
+			</div>
+			<div class="thanks">
+				   感谢
+				  <a href="http://www.ucloud.cn">
+					  <img src='http://cdnjscn.b0.upaiyun.com/plus/cdnjs.cn/imgs/ucloud_logo.png'>
+				  </a>为本站提供超级稳定的云主机支持！
+			</div>
 	</div>
 	</div>
 	

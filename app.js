@@ -22,23 +22,22 @@ app.set('port', process.env.PORT || 8000);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'mustache');
 app.set('layout', 'layout');
-//app.set('partials', {footer: "footer",header: "header"});
-if('production' == app.get('env')){
+if('production' == app.settings.env){
   app.enable('view cache');
 }
 app.engine('mustache', require('hogan-express'));
 
-app.use(express.favicon());
-app.use(express.logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded());
-app.use(express.methodOverride());
-app.use(app.router);
-app.use(express.static( __dirname +  '/public'));
+//app.use(express.favicon());
+//app.use(express.logger('dev'));
+//app.use(express.json());
+//app.use(express.urlencoded());
+//app.use(express.methodOverride());
+//app.use(app.router);
+//app.use(express.static( __dirname +  '/public'));
 
 // development only
-if ('development' == app.get('env')) {
-  app.use(express.errorHandler());
+if ('development' == app.settings.env) {
+  //app.use(express.errorHandler());
 }
 
 app.get('/', routes.index);

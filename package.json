@@ -6,10 +6,10 @@
     "start": "node app.js"
   },
   "dependencies": {
-    "express": "3.4.8",
-    "underscore": "1.5.2",
+    "express": "4.0.0",
+    "underscore": "1.6.0",
     "hogan-express": "0.5.2",
-	"mongoose": "3.8.6",
-	"async": "0.6.2"
+	"mongoose": "3.8.8",
+	"async": "0.7.0"
   }
 }
