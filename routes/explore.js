@@ -12,8 +12,9 @@ exports.index = function(req, res){
 	async.parallel({
 		page: function (callback) {
 			callback(null,{
-				title: '发现 - cdnjs.cn'
-			})
+				title: '探索 - cdnjs.cn',
+				description: '探索前端优秀的开源框架'
+			});
 		},
 		pager:function(callback){
 			cdnjscn.count(function(err,num){
