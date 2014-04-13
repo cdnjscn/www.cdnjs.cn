@@ -33,9 +33,7 @@
 			text-decoration:underline
 		}
 		
-		
-		
-		.main,.footer,.header {
+		.main,.footer,.header,.container {
 			width:900px;
 			margin:0 auto;
 		}
@@ -128,12 +126,31 @@
 			margin-top:10px;
 			vertical-align:bottom;
 		}
+		
+		.collection-head {
+			color:#fff;
+			height:225px;
+		}
+
+		.container {
+			position:relative;
+		}
+
+		.collection-title {
+			display:table-cell;
+			height:225px;
+			vertical-align:middle;
+		}
+
+		.collection-header {
+			font-size:42px;
+			margin-top:0;
+			margin-bottom:15px;
+		}
 		</style>
 	</head>
 	<body>
 		<div class="header-wrapper">
-			
-		
 		<div class="header clearfix">
 	<h1 class="logo"><a href="/" title="{{page.title}}">cdnjs<i>.cn</i></a></h1>
 	<div class="upyun">
@@ -154,10 +171,7 @@
 	</div>
 	</div>
 	</div>
-	
-	<div class="main">
 	{{{yield}}}
-	</div>
 	<div class="footer-wrapper">
 		<div class="footer">
 			<div class="copyright">
