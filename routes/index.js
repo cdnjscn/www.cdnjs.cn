@@ -31,6 +31,11 @@ exports.index = function(req, res) {
 	}];
 
 	async.parallel({
+		page: function (callback) {
+			callback(null, {
+				title: 'cdnjs.cn - 加速、探索和讨论前端那些事儿'
+			});
+		},
 		total: function(callback) {
 			Project.count(function(err, num) {
 				callback(err, num);
@@ -78,7 +83,6 @@ exports.index = function(req, res) {
 			});
 		}
 	}, function(err, data) {
-		data.title = 'cdnjs.cn';
 		res.render('index', data);
 	});
 };

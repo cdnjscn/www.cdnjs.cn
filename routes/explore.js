@@ -10,6 +10,11 @@ exports.index = function(req, res){
 		listNum = 10;
 		
 	async.parallel({
+		page: function (callback) {
+			callback(null,{
+				title: '发现 - cdnjs.cn'
+			})
+		},
 		pager:function(callback){
 			cdnjscn.count(function(err,num){
 				var pager = {
@@ -69,7 +74,6 @@ exports.index = function(req, res){
 			]);	
 		}
 	},function(err,results){
-		results.title = '发现 - cdnjs.cn';
 		res.render('explore', results);
 	});
 };
