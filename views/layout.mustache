@@ -4,6 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<title>{{page.title}}</title>
+		<meta name="description" content="{{page.description}}">
 		<link rel="stylesheet" href="http://cdnjscn.b0.upaiyun.com/libs/twitter-bootstrap/3.1.1/css/bootstrap.min.css" />
 		<style>
 		blockquote,body,button,dd,dl,dt,fieldset,form,h1,h2,h3,h4,h5,h6,hr,input,legend,li,ol,p,pre,td,textarea,th,ul{margin:0;padding:0}
@@ -47,7 +48,7 @@
 		}
 		.header .logo {
 			float:left;
-			font-size:30px;
+			font-size:32px;
 			font-weight:bold;
 			border-right:solid 1px #333;
 			padding-right:15px;
@@ -81,10 +82,15 @@
 		.header .search input {
 			width:150px;
 			height:30px;
-			-webkit-transition: width .6s;
-			transition: width .6s;
+			-webkit-transition: width .2s;
+			transition: width .2s;
 			font-size:12px;
 			padding-left:10px;
+			border-radius:3px;
+			border-color:#ddd;
+			border:1px solid #ccc;
+			background:#fcfcfc;
+			box-shadow:1px 1px 0 #fff;
 		}
 		.header .search input:focus {
 			width:220px;
@@ -94,7 +100,7 @@
 			font-size:14px;
 		}
 		.header .nav a{
-			color:#7B838A;
+			color:#333;
 		}
 		
 		.item{
@@ -128,21 +134,21 @@
 			
 		
 		<div class="header clearfix">
-	<h1 class="logo"><a href="/" title="cdnjs.cn">cdnjs<i>.cn</i></a></h1>
+	<h1 class="logo"><a href="/" title="{{page.title}}">cdnjs<i>.cn</i></a></h1>
 	<div class="upyun">
 	<a href="http://www.upyun.com" title="由又拍云提供CDN加速服务">
 		<img src='http://cdnjscn.b0.upaiyun.com/plus/cdnjs.cn/imgs/upyun_logo.png'>
 	</a>	
 	</div>
 	<div class="nav">
-		<a href="/explore">发现</a> |
+		<a href="/explore">探索</a> |
 		<a href="/about">简介</a> |
 		<a href="/about#howto">如何增加一个库</a> |
 		<a rel="nofollow" href="https://github.com/cdnjscn/www.cdnjs.cn/issues">意见反馈</a>
 	</div>
 	<div class="search">
 	<form action="/search">
-		<input name="q" placeholder="输入项目名称" value="">
+		<input name="q" placeholder="搜索项目名称" value="">
 	</form>
 	</div>
 	</div>

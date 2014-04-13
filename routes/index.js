@@ -33,7 +33,8 @@ exports.index = function(req, res) {
 	async.parallel({
 		page: function (callback) {
 			callback(null, {
-				title: 'cdnjs.cn - 加速、探索和讨论前端那些事儿'
+				title: 'cdnjs.cn - 加速、探索和讨论前端那些事儿',
+				description: 'cdnjs.cn是cdnjs在国内的镜像站点，静态资源托管在又拍云存储，每天同步更新且支持https协议!'
 			});
 		},
 		total: function(callback) {
