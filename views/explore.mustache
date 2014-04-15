@@ -57,10 +57,25 @@
 {{/list}}
 </ul>
 </div>
-
-	<a href="/explore?page=1">首页</a>
-	{{#pager.list}}
-		<a href="/explore?page={{.}}">{{.}}</a>
-	{{/pager.list}}
-	<a href="/explore?page={{pager.maxPage}}">末页</a>
+	<ul class="pagination">
+		<li><a href="/explore?page=1">首页</a></li>
+		{{#pager.showPrev}}
+		<li><a href="/explore?page={{pager.prevPage}}">...</a></li>
+		{{/pager.showPrev}}
+		{{#pager.list}}
+			<li {{#active}}class="active"{{/active}}>
+				{{#active}}<span>{{page}}</span>{{/active}}
+				{{^active}}<a href="/explore?page={{page}}">{{page}}</a>{{/active}}
+			</li>
+		{{/pager.list}}
+		{{#pager.showNext}}
+		<li><a href="/explore?page={{pager.nextPage}}">...</a></li>
+		{{/pager.showNext}}
+		<li><a href="/explore?page={{pager.maxPage}}">末页</a></li>
+	</ul>
+	
+	
+	
+	
+	
 </div>

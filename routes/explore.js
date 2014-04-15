@@ -18,12 +18,31 @@ exports.index = function(req, res){
 		},
 		pager:function(callback){
 			cdnjscn.count(function(err,num){
+				curPage = +curPage;
 				var pager = {
 					curPage: curPage,
 					total: num
 				};
+				// curPage为第一或最后页的时候，不会显示上下页，可以简单的加减
+				pager.prevPage = curPage - 1;
+				pager.nextPage = curPage + 1;
 				pager.maxPage = Math.ceil(num / listNum);
-				pager.list = _.range(1,pager.maxPage + 1);
+				if(curPage <= 2){
+					pager.list = [1,2,3];
+					pager.showPrev = false;
+					pager.showNext = true;
+				} else if(curPage > pager.maxPage - 2){
+					pager.list = [pager.maxPage-2, pager.maxPage-1,pager.maxPage];
+					pager.showNext = false;
+					pager.showPrev = true;
+				} else {
+					pager.list = [curPage - 1, curPage, curPage + 1];
+					pager.showNext = true;
+					pager.showPrev = true;
+				}
+				_.each(pager.list,function(v,i){
+					pager.list[i] = v == curPage ? {page: v,active: true} : {page: v,active: false};
+				});
 				callback(err,pager);
 			});
 		},
