@@ -4,13 +4,12 @@
 	margin:20px 0;
 }
 </style>
-<a href="/">首页</a> > {{project.name}}<br>
-{{project.name}}<br>
-{{project.description}}<br>
-<a target="_blank" rel="nofollow" href="{{project.homepage}}">{{project.homepage}}</a><br>
-{{project.filename}}<br>
-最新稳定版：{{project.version}}<br>
-
+<a href="/">首页</a> > {{project.name}}
+<div class="project">
+{{project.name}} <span>({{project.version}})</span>
+<a target="_blank" rel="nofollow" href="{{project.homepage}}">项目首页</a>
+<p>{{project.description}}</p>
+</div>
 <div class="list">
 {{#project.assets}}
 <h3>{{version}}</h3>
