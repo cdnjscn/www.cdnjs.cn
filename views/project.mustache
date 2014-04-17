@@ -3,12 +3,37 @@
 .list {
 	margin:20px 0;
 }
+
+.project {
+	font-size:14px;
+	margin:18px 0;
+	border:solid 1px #dedede;
+	padding:10px;
+	background-color:#f9f9f9;
+}
+.project .version {
+	font-size:12px;
+	color:#999;
+	margin-left:10px;
+}
+.project .site {
+	font-size:12px;
+	color:#999;
+}
+.project .desc {
+	margin-top:10px;
+}
 </style>
-<a href="/">首页</a> > {{project.name}}
+<div class="main">
+	<div class="breadcrum">
+		<a href="/">首页</a> > {{project.name}}
+	</div>
+</div>
 <div class="project">
-{{project.name}} <span>({{project.version}})</span>
-<a target="_blank" rel="nofollow" href="{{project.homepage}}">项目首页</a>
-<p>{{project.description}}</p>
+<h3><strong>{{project.name}}</strong> <span class="version">({{project.version}})</span>
+<a class="site" target="_blank" rel="nofollow" href="{{project.homepage}}">项目首页</a>
+</h3>
+<p class="desc">{{project.description}}</p>
 </div>
 <div class="list">
 {{#project.assets}}
