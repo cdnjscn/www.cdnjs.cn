@@ -1,16 +1,11 @@
 <div class="main">
-<style>
-.list {
-	margin:20px 0;
-}
-</style>
 <a href="/">首页</a> > <a href="#">搜索</a>
 
 <div class="list">
 <ul>
 {{#list}}
-<li>
-<a href="/p/{{name}}">{{name}}</a>({{version}})
+<li class="item-wrapper">
+<a href="/p/{{name}}">{{name}}</a><span class="version">({{version}})</span>
 <ul class="item">
 {{#assets}}
 {{#files}}
