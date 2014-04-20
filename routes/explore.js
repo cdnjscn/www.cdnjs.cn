@@ -5,11 +5,21 @@ var cdnjscn = require('../models/cdnjscn'),
 	async = require('async');
 
 exports.index = function(req, res){
-	var curPage = req.query.page || 1,
+	var valueCheck = {'star':true,'fork':true},
+		curPage = req.query.page || 1,
 		sortBy = req.query.sort || 'fork',
 		listNum = 10;
 		
+	if(!valueCheck[sortBy]) {
+		sortBy = 'star';
+	}
+		
 	async.parallel({
+		sortState: function (callback) {
+			var state = {};
+			state[sortBy + '_selected'] = true;
+			callback(null,state);
+		},
 		page: function (callback) {
 			callback(null,{
 				title: '探索 - cdnjs.cn',
