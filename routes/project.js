@@ -16,19 +16,22 @@ exports.index = function(req, res){
   				  res.send(500);
   				  return;
   			  }
-			  var temp = null;
+			  var temp = null,lastestIndex = 0;
   			  _.each(data.assets,function(v,i){
   					reSort(v.files,data);
   					v.hasExt = v.files.length > 2;
 					
-  				  	if(i > 0 && v.version == data.version){
-  					  temp = data.assets[0];
-  					  data.assets[0] = v;
-  					  data.assets[i] = temp;
-  					  temp = null;
+  				  	if(v.version == data.version && i > 0){
+					  lastestIndex = i;
   				  	}
-  			  });	
+  			  });
 			  
+			  if(lastestIndex){
+				  temp = data.assets.splice(lastestIndex,1);
+				  data.assets.unshift(temp[0]);
+				  temp = null;
+				  lastestIndex = 0;	
+			  }
   			  callback(err,data);
   		  });
 		}
