@@ -16,10 +16,19 @@ exports.index = function(req, res){
   				  res.send(500);
   				  return;
   			  }
-  			  _.each(data.assets,function(v){
+			  var temp = null;
+  			  _.each(data.assets,function(v,i){
   					reSort(v.files,data);
   					v.hasExt = v.files.length > 2;
-  			  });			  
+					
+  				  	if(i > 0 && v.version == data.version){
+  					  temp = data.assets[0];
+  					  data.assets[0] = v;
+  					  data.assets[i] = temp;
+  					  temp = null;
+  				  	}
+  			  });	
+			  
   			  callback(err,data);
   		  });
 		}
