@@ -21,9 +21,11 @@ exports.index = function(req, res) {
 	  			  v.assets = _.find(v.assets,function(item){
 	  				  return item.version == version;
 	  			  });
-// 	  			  files = v.assets[0].files
-// 	  			  reSort(files,v);
-// 	  			  v.hasExt = files.length > 2;
+				  if(v.assets && v.assets[0]){
+ 	  			  	files = v.assets[0].files
+ 	  			  	reSort(files,v);
+ 	  			  	v.hasExt = files.length > 2;
+			  	  }
 	  		  });
 		  	  callback(err,data);
 	  	  });
