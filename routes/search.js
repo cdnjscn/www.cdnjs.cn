@@ -11,7 +11,7 @@ exports.index = function(req, res) {
 			})
 		},
 		list: function (callback) {
-	  	  Project.find({name: new RegExp(req.query.q,'i')},function(err,data){
+	  	  Project.find({name: new RegExp(req.query.q,'i')}).limit(20).exec(function(err,data){
 	  		  _.map(data,function(v){
 	  			  var version = v.version,files = null;
 	  			  v.assets = _.find(v.assets,function(item){
