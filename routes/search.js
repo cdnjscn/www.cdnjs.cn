@@ -17,13 +17,13 @@ exports.index = function(req, res) {
 // 			}
 	  	  Project.find({name: new RegExp(req.query.q,'i')}).exec(function(err,data){  
 	  		  _.map(data,function(v){
-	  			  var version = v.version,files = null;
-	  			  v.assets = _.find(v.assets,function(item){
-	  				  return item.version == version;
-	  			  });
-	  			  files = v.assets[0].files
-	  			  reSort(files,v);
-	  			  v.hasExt = files.length > 2;
+	  			  // var version = v.version,files = null;
+// 	  			  v.assets = _.find(v.assets,function(item){
+// 	  				  return item.version == version;
+// 	  			  });
+// 	  			  files = v.assets[0].files
+// 	  			  reSort(files,v);
+// 	  			  v.hasExt = files.length > 2;
 	  		  });
 		  	  callback(err,data);
 	  	  });
