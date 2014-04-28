@@ -11,10 +11,6 @@ exports.index = function(req, res) {
 			})
 		},
 		list: function (callback) {
-			// if(req.query.q == 'moment') {
-// 				callback(null,[]);
-// 				return;
-// 			}
 	  	  Project.find({name: new RegExp(req.query.q,'i')}).exec(function(err,data){  
 	  		  _.map(data,function(v){
 	  			  var version = v.version,files = null;
