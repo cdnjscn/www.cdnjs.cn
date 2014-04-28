@@ -22,13 +22,17 @@ exports.index = function(req, res) {
 	  				  return item.version == version;
 	  			  });
 	  			  files = v.assets[0].files
-	  			  //reSort(files,v);
+	  			  reSort(files,v);
 	  			  v.hasExt = files.length > 2;
 	  		  });
 		  	  callback(err,data);
 	  	  });
 		}
 	},function(err,json){
+		if(err){
+			res.send(err);
+			return;
+		}
 		res.render('search',json);
 	});
 };
