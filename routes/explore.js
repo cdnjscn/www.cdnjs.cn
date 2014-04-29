@@ -10,6 +10,8 @@ exports.index = function(req, res){
 		sortBy = req.query.sort || 'fork',
 		listNum = 10;
 		
+		curPage = +curPage;
+		
 	if(!valueCheck[sortBy]) {
 		sortBy = 'star';
 	}
@@ -28,7 +30,6 @@ exports.index = function(req, res){
 		},
 		pager:function(callback){
 			cdnjscn.count(function(err,num){
-				curPage = +curPage;
 				var pager = {
 					curPage: curPage,
 					total: num
@@ -66,7 +67,7 @@ exports.index = function(req, res){
 					cdnjscn.find({},{'_id':0})
 					.skip((curPage - 1) * listNum)
 					.sort( _sort[sortBy] || {'g_fork':-1})
-					.limit(20)
+					.limit(listNum)
 					.exec(function(err,sortList){
 						var names = [],len = sortList.length;
 						for (var i = 0; i < len; i++) {
