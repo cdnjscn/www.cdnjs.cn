@@ -44,10 +44,13 @@ app.get('/', routes.index);
 app.get('/about', about.index);
 app.get('/explore', explore.index);
 app.get('/search', search.index);
-app.get('/category/:tag', routes.index);
+//app.get('/category/:tag', routes.index);
 //2014年7月里可以删除此部分
 app.get('/tag/:tag', function(req,res){
-	res.redirect(301, '/category/' + req.params.tag);
+	res.redirect(301, '/?category=' + req.params.tag);
+});
+app.get('/category/:tag', function(req,res){
+	res.redirect(301, '/?category=' + req.params.tag);
 });
 
 app.get('/p/:pname', project.index);

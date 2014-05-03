@@ -4,32 +4,9 @@ var Project = require('../models/project'),
 	async = require('async');
 
 exports.index = function(req, res) {
-	var tags = [{
-		tag: 'pop',
-		text: '流行',
-		list: ['jquery', 'twitter-bootstrap', 'angular.js', 'ember.js', 'underscore.js', 'backbone.js', 'zepto', 'seajs']
-	}, {
-		tag: 'mobile',
-		text: '移动端',
-		list: ['zepto', 'jquery-mobile', 'jo', 'swipe', 'iScroll', 'topcoat']
-	}, {
-		tag: 'responsive',
-		text: '响应式',
-		list: ['twitter-bootstrap', 'foundation', 'responsive-nav.js', 'skeleton', 'topcoat', 'respond.js']
-	}, {
-		tag: 'template',
-		text: '模版引擎',
-		list: ['mustache.js', 'hogan.js', 'handlebars.js']
-	}, {
-		tag: 'css',
-		text: '样式',
-		list: ['twitter-bootstrap', 'animate.css', 'less.js', 'authy-forms.css', 'stylus']
-	}, {
-		tag: 'lib',
-		text: '框架',
-		list: ['jquery', 'underscore.js', 'lodash.js', 'zepto']
-	}];
-
+	var tags = require('../tags.json'),
+		tag = req.query.category || 'pop';
+		
 	async.parallel({
 		page: function (callback) {
 			callback(null, {
@@ -43,20 +20,20 @@ exports.index = function(req, res) {
 			});
 		},
 		tags: function(callback) {
-			var tag = req.params.tag || 'pop',
-				len = tags.length,
+			var len = tags.length,
 				i = 0;
 			for (; i < len; i++) {
-				if(tags[i].tag == tag ){
+				if(tags[i].selected){
+					delete tags[i].selected;
+				}
+				if(!tags[i].selected && tags[i].tag == tag ){
 					tags[i].selected = true;
-					break;
 				}
 			}
 			callback(null, tags);
 		},
 		list: function(callback) {
-			var tag = req.params.tag || 'pop',
-				data = _.find(tags, function(v) {
+			var data = _.find(tags, function(v) {
 					return v.tag == tag;
 				}),
 				list = data.list;
