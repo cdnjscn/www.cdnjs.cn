@@ -14,6 +14,7 @@ var project = require('./routes/project');
 var search = require('./routes/search');
 var about = require('./routes/about');
 var explore = require('./routes/explore');
+var category = require('./routes/category');
 
 var app = express();
 
@@ -50,7 +51,12 @@ app.get('/tag/:tag', function(req,res){
 	res.redirect(301, '/?category=' + req.params.tag);
 });
 app.get('/category/:tag', function(req,res){
-	res.redirect(301, '/?category=' + req.params.tag);
+	var index = ['pop','mobile','responsive','template','css','lib'],tag = req.params.tag;
+	if(index.indexOf(tag) >= 0) {
+		res.redirect(301, '/?category=' + req.params.tag);
+	} else {
+		category.index(req,res);
+	}
 });
 
 app.get('/p/:pname', project.index);

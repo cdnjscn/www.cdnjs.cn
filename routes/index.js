@@ -7,6 +7,10 @@ exports.index = function(req, res) {
 	var tags = require('../tags.json'),
 		tag = req.query.category || 'pop';
 		
+	tags = _.filter(tags,function(v){
+		return ['pop','mobile','responsive','template','css','lib'].indexOf(v.tag) > -1;
+	});
+	
 	async.parallel({
 		page: function (callback) {
 			callback(null, {

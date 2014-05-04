@@ -23,5 +23,17 @@
 		"tag": "lib",
 		"text": "框架",
 		"list": ["jquery", "underscore.js", "lodash.js", "zepto"]
+	}, {
+		"tag":"editor",
+		"text": "编辑器",
+		"list": ["ckeditor","epiceditor","oj.AceEditor","jsoneditor","tinymce","bootstrap-markdown","ace","wysihtml5"]
+	}, {
+		"tag":"jquery",
+		"text": "jquery",
+		"list": ["jquery","jqueryui","jquery.simpleWeather","jquery.pjax","jquery.form","jquery-contextmenu","jquery-cookie"]
+	}, {
+		"tag": "bootstrap",
+		"text":"bootstrap",
+		"list": ["twitter-bootstrap","jasny-bootstrap","bootstrap-switch","bootstrap-rtl","bootstrap-modal","bootstrap-markdown","bootstrap-datepicker"]
 	}
 ]
