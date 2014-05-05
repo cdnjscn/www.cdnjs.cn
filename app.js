@@ -15,6 +15,7 @@ var search = require('./routes/search');
 var about = require('./routes/about');
 var explore = require('./routes/explore');
 var category = require('./routes/category');
+var tag = require('./routes/tag');
 
 var app = express();
 
@@ -48,7 +49,12 @@ app.get('/search', search.index);
 //app.get('/category/:tag', routes.index);
 //2014年7月里可以删除此部分
 app.get('/tag/:tag', function(req,res){
-	res.redirect(301, '/?category=' + req.params.tag);
+	var index = ['pop','mobile','responsive','template','css','lib'],query = req.params.tag;
+	if(index.indexOf(query) >= 0) {
+		res.redirect(301, '/?category=' + req.params.tag);
+	}else{
+		tag.index(req,res);
+	}
 });
 app.get('/category/:tag', function(req,res){
 	var index = ['pop','mobile','responsive','template','css','lib'],tag = req.params.tag;
