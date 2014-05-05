@@ -31,6 +31,6 @@ exports.index = function(req, res) {
 			res.send(err);
 			return;
 		}
-		res.render('search',json);
+		req.query.view == 'json' ? res.json(json) : res.render('search', json);
 	});
 };

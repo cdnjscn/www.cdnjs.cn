@@ -104,7 +104,7 @@ exports.index = function(req, res){
 			    }
 			]);	
 		}
-	},function(err,results){
-		res.render('explore', results);
+	},function(err,json){
+		req.query.view == 'json' ? res.json(json) : res.render('explore', json);
 	});
 };

@@ -36,6 +36,6 @@ exports.index = function(req, res){
   		  });
 		}
 	}, function(err,json){
-		res.render('project',json);
+		req.query.view == 'json' ? res.json(json) : res.render('project', json);
 	});	  
 };

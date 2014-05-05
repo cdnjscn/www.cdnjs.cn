@@ -64,7 +64,7 @@ exports.index = function(req, res) {
 				callback(err, data);
 			});
 		}
-	}, function(err, data) {
-		res.render('index', data);
+	}, function(err, json) {
+		req.query.view == 'json' ? res.json(json) : res.render('index', json);
 	});
 };

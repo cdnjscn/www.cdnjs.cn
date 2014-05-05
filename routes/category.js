@@ -51,7 +51,8 @@ exports.index = function(req, res){
 		
 	},function(err,json){
 		// console.log(json);
-		res.render('category', json);
+		// res.render('category', json);
+		req.query.view == 'json' ? res.json(json) : res.render('category', json);
 	});
 	
 };
