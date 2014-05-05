@@ -1,1 +1,24 @@
-{{tag._id}}
+<div class="main">
+<a href="/">首页</a> > <a href="/tag">标签云</a> > <span>{{tag}}</span>
+
+<div class="list">
+<ul>
+{{#list}}
+<li class="item-wrapper">
+<a href="/p/{{name}}">{{name}}</a><span class="version">({{version}})</span>
+<p class="desc">{{description}}</p>
+<ul class="item">
+{{#assets}}
+{{#files}}
+<li>//cdnjscn.b0.upaiyun.com/libs/{{name}}/{{version}}/{{.}}</li>
+{{/files}}
+{{/assets}}
+</ul>
+{{#hasExt}}
+<a href="#" class="ext">展开</a>
+{{/hasExt}}
+</li>
+{{/list}}
+</ul>
+</div>
+</div>

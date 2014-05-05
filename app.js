@@ -47,6 +47,8 @@ app.get('/about', about.index);
 app.get('/explore', explore.index);
 app.get('/search', search.index);
 //app.get('/category/:tag', routes.index);
+
+app.get('/tag', tag.all);
 //2014年7月里可以删除此部分
 app.get('/tag/:tag', function(req,res){
 	var index = ['pop','mobile','responsive','template','css','lib'],query = req.params.tag;
