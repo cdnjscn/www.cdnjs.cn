@@ -13,6 +13,11 @@
 	font-size:12px;
 	color:#999;
 }
+
+.categorys,.tags{
+	padding:10px 0;
+	border-bottom:solid 1px #dedede;
+}
 </style>
 <div class="main">
 	<div class="breadcrum">
@@ -33,6 +38,33 @@
 </div>
 
 <div class="main">
+	
+	<div class="categorys">
+	<h3>类别</h3>
+	<a href="/category/jquery">jquery</a>
+	<a href="/category/editor">编辑器</a>
+	<a href="/category/bootstrap">bootstrap</a>
+	<a href="/category/animation">动画</a>
+	<a href="/category/lib">框架</a>
+	<a href="/category/template">模版引擎</a>
+	<a href="/category/mobile">移动端</a>
+	<a href="/category/responsive">响应式</a>
+	</div>
+	
+	<div class="tags">
+		<h3>标签</h3>
+		<a href="/tag/popular">popular</a>
+		<a href="/tag/html5">html5</a>
+		<a href="/tag/canvas">canvas</a>
+		<a href="/tag/ajax">ajax</a>
+		<a href="/tag/ui">ui</a>
+		<a href="/tag/toolkit">toolkit</a>
+		<div>
+			<a href="/tag">全部</a>
+		</div>
+	</div>
+	
+	<h3>排行</h3>
 <div class="nav">
 <a href="/explore?page={{pager.curPage}}&amp;sort=fork" {{#sortState.fork_selected}}class="selected"{{/sortState.fork_selected}}>参与</a> <a href="/explore?page={{pager.curPage}}&amp;sort=star" {{#sortState.star_selected}}class="selected"{{/sortState.star_selected}}>关注</a>
 </div>

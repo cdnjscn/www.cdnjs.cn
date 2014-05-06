@@ -14,7 +14,7 @@
 	}, {
 		"tag": "template",
 		"text": "模版引擎",
-		"list": ["mustache.js", "hogan.js", "handlebars.js"]
+		"list": ["mustache.js", "hogan.js", "handlebars.js","swig"]
 	}, {
 		"tag": "css",
 		"text": "样式",
@@ -35,5 +35,9 @@
 		"tag": "bootstrap",
 		"text":"bootstrap",
 		"list": ["twitter-bootstrap","jasny-bootstrap","bootstrap-switch","bootstrap-rtl","bootstrap-modal","bootstrap-markdown","bootstrap-datepicker"]
+	}, {
+		"tag":"animation",
+		"text":"动画",
+		"list":["animate.css","kiss.animate","skycons","tweenjs","magnific-popup.js","jquery-gamequery","gsap"]
 	}
 ]
