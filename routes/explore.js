@@ -1,5 +1,6 @@
 var cdnjscn = require('../models/cdnjscn'),
 	Project = require('../models/project'),
+	Tags = require('../models/tags'),
 	reSort = require('../util').reSort,
 	_ = require('underscore'),
 	async = require('async');
@@ -55,6 +56,16 @@ exports.index = function(req, res){
 					pager.list[i] = v == curPage ? {page: v,active: true} : {page: v,active: false};
 				});
 				callback(err,pager);
+			});
+		},
+		tags: function (callback) {
+			Tags.find().lean().sort({value:-1}).limit(16).exec(function(err,data){
+				// tag种类 15 - 0
+				_.each(data,function(v,i){
+					v['className'] = 't' + (15 - i);
+				});
+				data = _.shuffle(data);
+				callback(null,data);
 			});
 		},
 		list: function(callback){

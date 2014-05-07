@@ -51,14 +51,11 @@
 	<a href="/category/responsive">响应式</a>
 	</div>
 	
-	<div class="tags">
-		<h3>标签</h3>
-		<a href="/tag/popular">popular</a>
-		<a href="/tag/html5">html5</a>
-		<a href="/tag/canvas">canvas</a>
-		<a href="/tag/ajax">ajax</a>
-		<a href="/tag/ui">ui</a>
-		<a href="/tag/toolkit">toolkit</a>
+	<div class="tags tagcloud">
+		<h3>前端云图</h3>
+		{{#tags}}
+		<a href="/tag/{{_id}}" class="{{className}}">{{_id}}</a>
+		{{/tags}}
 		<div>
 			<a href="/tag">全部</a>
 		</div>

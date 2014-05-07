@@ -40,7 +40,7 @@ exports.all = function(req, res) {
 	async.parallel({
 		page: function(callback) {
 			callback(null, {
-				title: '标签云 - ' + 'cdnjs.cn'
+				title: '前端云图 - ' + 'cdnjs.cn'
 			})
 		},
 		list: function(callback) {
