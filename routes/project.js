@@ -35,11 +35,14 @@ exports.index = function(req, res, next){
 				  temp = null;
 				  lastestIndex = 0;	
 			  }
-  			  callback(err,data);
+  			  callback(null,data);
   		  });
 		}
 	}, function(err,json){
-		err && next(err);
+		if(err){
+			next(err);
+			return;
+		}
 		req.query.view == 'json' ? res.json(json) : res.render('project', json);
 	});	  
 };

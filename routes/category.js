@@ -5,34 +5,51 @@ var cdnjscn = require('../models/cdnjscn'),
 	async = require('async'),
 	tags = require('../tags');
 
-exports.index = function(req, res){
+exports.index = function(req, res, next) {
 	var tag = req.params.tag,
 		data = null,
 		len = tags.length;
-	
-	for(var i=0; i<len; i++) {
-		if(tag == tags[i].tag) {
+
+	for (var i = 0; i < len; i++) {
+		if (tag == tags[i].tag) {
 			data = tags[i];
 		}
 	}
-		
+	
+	if(!data) {
+		next({
+			code: 404,
+			msg: '未找到对象'
+		});
+		return;
+	}
+	
 	async.parallel({
-		page: function (callback) {
-			callback(null,{
+		page: function(callback) {
+			callback(null, {
 				title: data.text + ' - cdnjs.cn',
 				description: '探索前端优秀的开源框架'
 			});
 		},
-		list: function (callback) {
+		list: function(callback) {
 			var list = data.list;
 			Project.find({
 				name: {
 					'$in': list
 				}
 			}).exec(function(err, data) {
+				if(err){
+					callback({
+						code: 500,
+						msg: '数据库错误'
+					});
+					return;
+				}
 				if (!data) {
-					console.log(err);
-					res.send(500);
+					callback({
+						code: 404,
+						msg: '未找到对象'
+					});
 					return;
 				}
 				_.map(data, function(v) {
@@ -45,15 +62,17 @@ exports.index = function(req, res){
 					reSort(files, v);
 					v.hasExt = files.length > 2;
 				});
-				callback(err, data);
+				callback(null, data);
 			});
 		},
-		
-	},function(err,json){
-		// console.log(json);
-		// res.render('category', json);
+
+	}, function(err, json) {
+		if(err){
+			next(err);
+			return;
+		}
 		json.tag = tag;
 		req.query.view == 'json' ? res.json(json) : res.render('category', json);
 	});
-	
+
 };

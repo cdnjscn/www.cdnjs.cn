@@ -4,7 +4,7 @@ var Project = require('../models/project'),
 	_ = require('underscore'),
 	async = require('async');
 
-exports.index = function(req, res) {
+exports.index = function(req, res, next) {
 	async.parallel({
 		page: function(callback) {
 			callback(null, {
@@ -15,6 +15,14 @@ exports.index = function(req, res) {
 			Project.find({
 				"keywords": req.params.tag
 			}).exec(function(err, data) {
+				if(err){
+					callback({code:500,msg:'数据库错误'});
+					return;
+				}
+				if(data && data.length == 0){
+					callback({code:404,msg:'找不到对象'});
+					return;
+				}
 				_.map(data, function(v) {
 					var version = v.version,
 						files = null;
@@ -27,16 +35,20 @@ exports.index = function(req, res) {
 						v.hasExt = files.length > 2;
 					}
 				});
-				callback(err, data);
+				callback(null, data);
 			});
 		}
 	}, function(err, json) {
+		if(err){
+			next(err);
+			return;
+	 	}
 		json.tag = req.params.tag;
 		req.query.view == 'json' ? res.json(json) : res.render('tag', json);
 	});
 };
 
-exports.all = function(req, res) {
+exports.all = function(req, res, next) {
 	async.parallel({
 		page: function(callback) {
 			callback(null, {
@@ -45,6 +57,10 @@ exports.all = function(req, res) {
 		},
 		list: function(callback) {
 			Tag.find({"value":{"$gt":1}}).sort({"_id":1}).lean().exec(function(err, data) {
+				if(err){
+					callback({code:500,msg:'数据库错误'});
+					return;
+				}
 				var len = data.length,keys = {};
 				for (var i = 0; i < len; i++) {
 					if(!keys[data[i].value]){
@@ -65,10 +81,14 @@ exports.all = function(req, res) {
 						v.className = 't0'
 					}
 				});
-				callback(err, data);
+				callback(null, data);
 			});
 		}
 	}, function(err, json) {
+		if(err){
+			next(err);
+			return;
+	 	}
 		req.query.view == 'json' ? res.json(json) : res.render('alltag', json);
 	});
 };
