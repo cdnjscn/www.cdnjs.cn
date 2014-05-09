@@ -40,7 +40,7 @@ app.engine('mustache', require('hogan-express'));
 
 // development only
 if ('development' == app.settings.env) {
-  //app.use(express.errorHandler());
+  // app.use(express.errorHandler());
 }
 
 app.get('/', routes.index);
@@ -69,6 +69,16 @@ app.get('/category/:tag', function(req,res){
 });
 
 app.get('/p/:pname', project.index);
+
+app.use(function(err,req, res, next){
+	// res.status(500);
+	if(err.code == 404){
+		res.status(404);
+	} else {
+		res.status(500);
+	}
+	res.render('error', {error: err.msg});
+});
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

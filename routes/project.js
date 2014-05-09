@@ -3,7 +3,7 @@ var Project = require('../models/project'),
 	_ = require('underscore'),
 	async = require('async');
 
-exports.index = function(req, res){
+exports.index = function(req, res, next){
 	async.parallel({
 		page: function (callback) {
 			callback(null,{
@@ -13,7 +13,10 @@ exports.index = function(req, res){
 		project: function (callback) {
   		  Project.findOne({name:req.params.pname},function(err,data){
   			  if (!data) {
-  				  res.send(500);
+				  callback({
+					  code: 404,
+					  msg: '未找到对象'
+				  });
   				  return;
   			  }
 			  var temp = null,lastestIndex = 0;
@@ -36,6 +39,7 @@ exports.index = function(req, res){
   		  });
 		}
 	}, function(err,json){
+		err && next(err);
 		req.query.view == 'json' ? res.json(json) : res.render('project', json);
 	});	  
 };
