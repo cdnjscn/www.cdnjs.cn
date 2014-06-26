@@ -3,6 +3,7 @@ var cdnjscn = require('../models/cdnjscn'),
 	reSort = require('../util').reSort,
 	_ = require('underscore'),
 	async = require('async'),
+	sites = require('../sites'),
 	tags = require('../tags');
 
 exports.index = function(req, res, next) {
@@ -25,6 +26,9 @@ exports.index = function(req, res, next) {
 	}
 	
 	async.parallel({
+		site: function(callback) {
+			callback(null, sites[req.cookies._c || 'u']);
+		},
 		page: function(callback) {
 			callback(null, {
 				title: data.text + ' - cdnjs.cn',

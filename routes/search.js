@@ -1,10 +1,14 @@
 var Project = require('../models/project'),
 	reSort = require('../util').reSort,
 	_ = require('underscore'),
+	sites = require('../sites'),
 	async = require('async');
 
 exports.index = function(req, res, next) {
 	async.parallel({
+		site: function(callback) {
+			callback(null, sites[req.cookies._c || 'u']);
+		},
 		page: function(callback) {
 			callback(null, {
 				title: '搜索' + req.query.q + ' - cdnjs.cn'

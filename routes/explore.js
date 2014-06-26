@@ -2,6 +2,7 @@ var cdnjscn = require('../models/cdnjscn'),
 	Project = require('../models/project'),
 	reSort = require('../util').reSort,
 	_ = require('underscore'),
+	sites = require('../sites'),
 	async = require('async');
 
 exports.index = function(req, res) {
@@ -20,6 +21,9 @@ exports.index = function(req, res) {
 	}
 
 	async.parallel({
+		site: function(callback) {
+			callback(null, sites[req.cookies._c || 'u']);
+		},
 		sortState: function(callback) {
 			var state = {};
 			state[sortBy + '_selected'] = true;

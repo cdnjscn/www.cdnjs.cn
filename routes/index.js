@@ -1,17 +1,21 @@
 var Project = require('../models/project'),
 	reSort = require('../util').reSort,
 	_ = require('underscore'),
+	sites = require('../sites'),
 	async = require('async');
 
 exports.index = function(req, res, next) {
 	var tags = require('../tags.json'),
 		tag = req.query.category || 'pop';
-
+	
 	tags = _.filter(tags, function(v) {
 		return ['pop', 'mobile', 'responsive', 'template', 'css', 'lib'].indexOf(v.tag) > -1;
 	});
 
 	async.parallel({
+		site: function(callback) {
+			callback(null, sites[req.cookies._c || 'u']);
+		},
 		page: function(callback) {
 			callback(null, {
 				title: 'cdnjs.cn - 加速、探索和讨论前端那些事儿',

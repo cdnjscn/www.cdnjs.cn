@@ -2,14 +2,18 @@ var Project = require('../models/project'),
 	Tag = require('../models/tags'),
 	reSort = require('../util').reSort,
 	_ = require('underscore'),
+	sites = require('../sites'),
 	async = require('async');
 
 exports.index = function(req, res, next) {
 	async.parallel({
+		site: function(callback) {
+			callback(null, sites[req.cookies._c || 'u']);
+		},
 		page: function(callback) {
 			callback(null, {
 				title: req.params.tag + ' - ' + 'cdnjs.cn'
-			})
+			});
 		},
 		list: function(callback) {
 			Project.find({

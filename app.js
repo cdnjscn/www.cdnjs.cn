@@ -3,6 +3,7 @@
  * Module dependencies.
  */
 var express = require('express');
+var cookieParser = require('cookie-parser');
 var http = require('http');
 var path = require('path');
 var mongoose = require('mongoose');
@@ -30,6 +31,7 @@ if('production' == app.settings.env){
 }
 app.engine('mustache', require('hogan-express'));
 
+app.use(cookieParser('~h1AiECeb(-)z!D-'));
 //app.use(express.favicon());
 //app.use(express.logger('dev'));
 //app.use(express.json());
