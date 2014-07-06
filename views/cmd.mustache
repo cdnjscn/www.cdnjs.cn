@@ -3,14 +3,23 @@
 h3 {
 	font-weight: bold;
 	font-size: 16px;
+	color: #333;
+}
+
+.content {
+	padding: 15px 0;
+}
+.content div, .content p {
+	margin: 10px 0;
 }
 </style>
 <div class="main">
 	<div class="breadcrum">
 		<a href="/">首页</a> > 生态圈	
 	</div>
+	<div class="content">
 	<h3>说明</h3>
-	<p>整理可用于浏览器端的Node模块，所列出的模块100%兼容浏览器端。</p>
+	<div>整理可用于浏览器端的Node模块数据库，所收录的模块100%兼容浏览器端，请大家一起来<a rel="nofollow" target="_blank" href="https://github.com/cdnjscn/www.cdnjs.cn/issues/2">补充</a>。</div>
 	<h3>模块列表</h3>
 	<div>
 		<ul>
@@ -31,7 +40,7 @@ npm install -g browserify
 npm install -g watchify
 </code>
 </pre>
-main.js
+<p>main.js</p>
 <pre class="prettyprint">
 <code class="lang-js">
 var unique = require('uniq');
@@ -41,24 +50,25 @@ var data = [1, 2, 2, 3, 4, 5, 5, 5, 6];
 console.log(unique(data));
 </code>
 </pre>
-安装uniq模块
+<p>安装uniq模块</p>
 <pre class="prettyprint">
 <code class="lang-bsh">
 npm install uniq
 </code>
 </pre> 
-监测文件改动
+<p>监测文件改动</p>
 <pre class="prettyprint">
 <code class="lang-bsh">
-watchify main.js -o bundle.js
+watchify main.js -o dist/main.js
 </code>
 </pre>
-在页面中引入实时编译的文件
+<p>在页面中引入实时编译的文件</p>
 <pre class="prettyprint">
 <code class="lang-html">
-&lt;script src="bundle.js"&gt;&lt;/script&gt;
+&lt;script src="dist/main.js"&gt;&lt;/script&gt;
 </code>	
 </pre>
+	</div>
 	</div>
 </div>
 <script src="http://cdnjscn.b0.upaiyun.com/libs/prettify/r298/prettify.min.js"></script>
