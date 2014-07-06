@@ -17,6 +17,7 @@ var about = require('./routes/about');
 var explore = require('./routes/explore');
 var category = require('./routes/category');
 var tag = require('./routes/tag');
+var cmd = require('./routes/cmd');
 
 var app = express();
 
@@ -71,6 +72,7 @@ app.get('/category/:tag', function(req,res,next){
 });
 
 app.get('/p/:pname', project.index);
+app.get('/cmd', cmd.index);
 
 app.use(function(err,req, res, next){
 	// res.status(500);

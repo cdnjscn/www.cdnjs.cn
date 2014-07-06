@@ -1,0 +1,67 @@
+<link rel="stylesheet" href="http://cdnjscn.b0.upaiyun.com/libs/prettify/r298/prettify.min.css" />
+<style>
+h3 {
+	font-weight: bold;
+	font-size: 16px;
+}
+</style>
+<div class="main">
+	<div class="breadcrum">
+		<a href="/">首页</a> > 生态圈	
+	</div>
+	<h3>说明</h3>
+	<p>整理可用于浏览器端的Node模块，所列出的模块100%兼容浏览器端。</p>
+	<h3>模块列表</h3>
+	<div>
+		<ul>
+		<li>escape-html</li>
+		<li>cookie</li>
+		<li>qs</li>
+		<li>url</li>
+		<li>querystring</li>
+		<li>events</li>
+		<li>path-browserify</li>
+		</ul>
+	</div>
+	<h3>快速上手</h3>
+	<div>
+<pre class="prettyprint">
+<code class="lang-bsh">
+npm install -g browserify
+npm install -g watchify
+</code>
+</pre>
+main.js
+<pre class="prettyprint">
+<code class="lang-js">
+var unique = require('uniq');
+	
+var data = [1, 2, 2, 3, 4, 5, 5, 5, 6];	
+
+console.log(unique(data));
+</code>
+</pre>
+安装uniq模块
+<pre class="prettyprint">
+<code class="lang-bsh">
+npm install uniq
+</code>
+</pre> 
+监测文件改动
+<pre class="prettyprint">
+<code class="lang-bsh">
+watchify main.js -o bundle.js
+</code>
+</pre>
+在页面中引入实时编译的文件
+<pre class="prettyprint">
+<code class="lang-html">
+&lt;script src="bundle.js"&gt;&lt;/script&gt;
+</code>	
+</pre>
+	</div>
+</div>
+<script src="http://cdnjscn.b0.upaiyun.com/libs/prettify/r298/prettify.min.js"></script>
+<script>
+	prettyPrint();
+</script>
