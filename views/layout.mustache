@@ -49,20 +49,12 @@
 			float:left;
 			font-size:32px;
 			font-weight:bold;
-			border-right:solid 1px #333;
-			padding-right:15px;
 		}
 		.header .logo a{
 			color:#5aaddf;
 		}
 		.header .logo i{
 			color:#656766;
-		}
-		.header .upyun{
-			float:left;
-			position:relative;
-			top:8px;
-			left:15px;
 		}
 		.header a:hover {
 			text-decoration: none;
@@ -137,6 +129,9 @@
 		.thanks {
 			margin-top:10px;
 			vertical-align:bottom;
+		}
+		.thanks img {
+			vertical-align: bottom;
 		}
 		
 		.collection-head {
@@ -222,13 +217,6 @@
 		<div class="header-wrapper">
 		<div class="header clearfix">
 	<h1 class="logo"><a href="/" title="{{page.title}}">cdnjs<i>.cn</i></a></h1>
-	<div class="upyun">
-	<a href="http://www.upyun.com" title="由又拍云提供CDN加速服务">
-		<img src='http://cdnjscn.b0.upaiyun.com/plus/cdnjs.cn/imgs/upyun_logo.png'>
-	</a>
-	<!-- <a id="j-up-mode" href="#">又拍云模式</a>
-	<a id="j-bd-mode" href="#">百度模式</a>	 -->
-	</div>
 	<div class="nav">
 		<a href="/explore">探索</a> |
 		<a href="/cmd">前端生态圈</a> |
@@ -248,10 +236,16 @@
 				Copyright &copy; 2014 cdnjs.cn All Rights Reserved 冀ICP备12013675号-2
 			</div>
 			<div class="thanks">
-				   感谢
-				  <a href="http://www.ucloud.cn">
+				<div class="bd">
+				 <span>服务器搭建在</span>
+				 <a href="http://www.ucloud.cn" title="专业云计算服务商">
 					  <img src='http://cdnjscn.b0.upaiyun.com/plus/cdnjs.cn/imgs/ucloud_logo.png'>
-				  </a>为本站提供超级稳定的云主机支持！
+				 </a>
+				<span>,存储赞助商为</span>
+	  			<a href="http://www.upyun.com" title="由又拍云提供CDN加速服务">
+	  				<img src='http://cdnjscn.b0.upaiyun.com/plus/cdnjs.cn/imgs/upyun_logo.png'>
+	  			</a>
+				</div>
 			</div>
 	</div>
 	</div>
