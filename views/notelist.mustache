@@ -1,0 +1,22 @@
+<style>
+.note-item {
+	padding: 10px 0;
+}
+</style>
+<div class="main">
+{{#noteList}}
+<div class="note-item">
+<h3><a href="/n/{{_id}}">{{title}}</a></h3>
+<div>
+	{{{content}}}
+</div>
+</div>
+{{/noteList}}
+<div class="pager">
+	<a href="/note/?page=1">首页</a>
+	{{#pager.list}}
+		<a href="/note/?page={{.}}">{{.}}</a>
+	{{/pager.list}}
+	<a href="/note/?page={{pager.maxPage}}">末页</a>
+</div>
+</div>

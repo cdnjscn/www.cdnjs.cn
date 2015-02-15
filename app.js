@@ -4,12 +4,16 @@
  */
 var express = require('express');
 var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
+
 var http = require('http');
 var path = require('path');
 var mongoose = require('mongoose');
 var mongo = require('./mongo.json');
-var uri = 'mongodb://' + mongo.ip + ':' + mongo.port + '/cdnjs';
-global.db = mongoose.createConnection(uri);
+var uri = 'mongodb://' + mongo.ip + ':' + mongo.port;
+global.db = mongoose.createConnection(uri + '/cdnjs');
+global.notesDB = mongoose.createConnection(uri + '/notes');
+
 var routes = require('./routes');
 var project = require('./routes/project');
 var search = require('./routes/search');
@@ -18,6 +22,11 @@ var explore = require('./routes/explore');
 var category = require('./routes/category');
 var tag = require('./routes/tag');
 var cmd = require('./routes/cmd');
+
+// 前端笔记
+var note = require('./routes/note');
+var noteWrite = require('./routes/notewrite');
+var noteapi = require('./routes/noteapi');
 
 var app = express();
 
@@ -31,15 +40,8 @@ if('production' == app.settings.env){
   app.enable('view cache');
 }
 app.engine('mustache', require('hogan-express'));
-
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser('~h1AiECeb(-)z!D-'));
-//app.use(express.favicon());
-//app.use(express.logger('dev'));
-//app.use(express.json());
-//app.use(express.urlencoded());
-//app.use(express.methodOverride());
-//app.use(app.router);
-//app.use(express.static( __dirname +  '/public'));
 
 // development only
 if ('development' == app.settings.env) {
@@ -73,6 +75,19 @@ app.get('/category/:tag', function(req,res,next){
 
 app.get('/p/:pname', project.index);
 app.get('/cmd', cmd.index);
+
+app.get('/n/:id', note.note);
+app.get('/n', function(req,res,next){
+	res.redirect(301, '/note');
+});
+app.get('/note', note.index);
+// 发表笔记
+app.get('/note/write', noteWrite.index);
+
+app.post('/noteapi/save', noteapi.save);
+
+
+
 
 app.use(function(err,req, res, next){
 	// res.status(500);
