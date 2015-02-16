@@ -5,6 +5,16 @@ var _ = require('underscore'),
 	async = require('async'),
 	s = require("underscore.string");
 	
+var renderer = new markdown.Renderer();
+
+renderer.paragraph = function (text) {
+	if(text.indexOf('<img') > -1) {
+		return '<p class="middle">' + text + '</p>\n';
+	} else {
+		return '<p>' + text + '</p>\n';
+	}
+};
+	
 // 列表页面
 exports.index = function(req, res, next) {
 	var curPage = req.query.page || 1,
@@ -57,7 +67,7 @@ exports.note = function(req, res, next) {
 					res.send(500);
 					return;
 				}
-				data.content = markdown(data.content);
+				data.content = markdown(data.content, { renderer: renderer });
 				callback(null, data);
 			}); 
 		}
