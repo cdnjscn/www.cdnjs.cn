@@ -9,10 +9,10 @@ var bodyParser = require('body-parser');
 var http = require('http');
 var path = require('path');
 var mongoose = require('mongoose');
+
 var mongo = require('./mongo.json');
-var uri = 'mongodb://' + mongo.ip + ':' + mongo.port;
-global.db = mongoose.createConnection(uri + '/cdnjs');
-global.notesDB = mongoose.createConnection(uri + '/notes');
+global.db = mongoose.createConnection(mongo.URI.replace(/\{db\}/gi,'cdnjs'), {read_secondary: true});
+global.notesDB = mongoose.createConnection(mongo.URI.replace(/\{db\}/gi,'notes'), {read_secondary: true});
 
 var routes = require('./routes');
 var project = require('./routes/project');
